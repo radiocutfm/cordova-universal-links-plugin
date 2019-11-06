@@ -22,6 +22,9 @@
   <js-module name="universalLinks" src="www/universal_links.js">
     <clobbers target="universalLinks"/>
   </js-module>
+  <js-module name="referrer" src="www/referrer.js">
+    <clobbers target="referrer"/>
+  </js-module>
 
 <!-- Hooks -->
   <hook src="hooks/afterPrepareHook.js" type="after_prepare"/>
@@ -84,6 +87,17 @@
         <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin"/>
         <param name="onload" value="true"/>
       </feature>
+      <feature name="referrer">
+        <param name="android-package" value="com.nordnetab.cordova.ul.referrer.Referrer"/>
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <receiver android:exported="true" android:name="com.nordnetab.cordova.ul.referrer.Receiver">
+        <intent-filter>
+          <action android:name="com.android.vending.INSTALL_REFERRER"/>
+        </intent-filter>
+      </receiver>
     </config-file>
 
 <!-- Java Library Sources -->
@@ -101,6 +115,10 @@
 
 <!-- sources for package: com.nordnetab.cordova.ul -->
     <source-file src="src/android/com/nordnetab/cordova/ul/UniversalLinksPlugin.java" target-dir="src/com/nordnetab/cordova/ul/"/>
+
+<!-- fuentas para obtener el install referrer -->
+    <source-file src="src/android/com/nordnetab/cordova/ul/referrer/Referrer.java" target-dir="src/com/nordnetab/cordova/ul/referrer"/>
+    <source-file src="src/android/com/nordnetab/cordova/ul/referrer/Receiver.java" target-dir="src/com/nordnetab/cordova/ul/referrer"/>
 
   </platform>
 </plugin>
