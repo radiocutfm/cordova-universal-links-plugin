@@ -23,7 +23,7 @@
     <clobbers target="universalLinks"/>
   </js-module>
   <js-module name="referrer" src="www/referrer.js">
-    <clobbers target="referrer"/>
+    <clobbers target="window.referrer"/>
   </js-module>
 
 <!-- Hooks -->
